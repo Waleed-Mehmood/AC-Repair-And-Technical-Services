@@ -1,0 +1,17 @@
+# BEGIN WordPress
+
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# END WordPress
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^quraninsoul\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.quraninsoul\.com$
+RewriteRule ^/?$ "https\:\/\/quraninsoul\.com\/" [R=301,L]
+
